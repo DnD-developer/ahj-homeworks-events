@@ -1,0 +1,39 @@
+.popup {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+
+	display: none;
+	justify-content: center;
+	align-items: center;
+
+	background: rgba(#000000, 0.5);
+
+	&__content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		max-width: 350px;
+		width: 100%;
+		min-height: 200px;
+
+		background-color: #ffffff;
+
+		border: 1px solid #000000;
+		border-radius: 5px;
+
+		font-family: "Master";
+	}
+
+	&__text {
+		color: #000000;
+		font-size: 35px;
+	}
+
+	&--active {
+		display: flex;
+	}
+}

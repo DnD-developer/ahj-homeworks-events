@@ -4,7 +4,10 @@
 @import "./global/global";
 @import "./global/animation";
 
+//!КОМПОНЕНТЫ JS
 @import "../../js/components/board/board.scss";
+@import "../../js/components/totalTable/totalTable.scss";
+@import "../../js/components/popup/popup.scss";
 
 .wrapper {
 	display: flex;

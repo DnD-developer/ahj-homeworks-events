@@ -1,9 +1,11 @@
-import goblin from "../../layout/assets/img/goblin.png"
+import goblin from "../../../layout/assets/img/goblin.png"
+import GlobalElement from "../globalElement"
 
-export default class Board {
+export default class Board extends GlobalElement {
 	constructor(parrentElement) {
-		this._parrentDocumentElement = document.querySelector(parrentElement)
+		super(parrentElement)
 		this.cells = []
+		this.init = this.init.bind(this)
 	}
 
 	create() {
@@ -22,7 +24,14 @@ export default class Board {
 		this.imgGoalDomelement = document.createElement("img")
 		this.imgGoalDomelement.setAttribute("src", goblin)
 
-		this._parrentDocumentElement.appendChild(this.boardDomElement)
+		super.init(this.boardDomElement)
+
+		this.init()
+	}
+
+	init(currentIndex = null) {
+		this.addHeadRandom(currentIndex)
+		this.transitHead()
 	}
 
 	addHeadRandom(currentIndex = null) {
@@ -34,10 +43,27 @@ export default class Board {
 	}
 
 	transitHead() {
-		setInterval(() => {
+		this.interval = setInterval(() => {
 			const currentIndex = this.cells.findIndex(cell => cell.querySelector("img"))
 
 			this.addHeadRandom(currentIndex)
 		}, 1000)
+	}
+
+	addEvents(table, popup) {
+		this.boardDomElement.addEventListener("click", e => {
+			if (e.target.closest("img")) {
+				table.updateTotal()
+
+				clearInterval(this.interval)
+				this.init(this.cells.findIndex(cell => e.target.closest(".board-item") === cell))
+			} else {
+				const progressGame = table.playerLose(popup)
+
+				if (progressGame && this.interval) {
+					clearInterval(this.interval)
+				}
+			}
+		})
 	}
 }

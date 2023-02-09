@@ -1,0 +1,29 @@
+.total-table {
+	position: absolute;
+	left: 50%;
+	top: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	width: 200px;
+	height: 100px;
+
+	transform: translateX(-50%);
+
+	border: 1px solid #000000;
+
+	font-family: "Master";
+
+	&__title {
+		font-size: 20px;
+		color: #000000;
+	}
+
+	&__result {
+		font-size: 80px;
+		color: red;
+	}
+}
